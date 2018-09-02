@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     double lat, lng;
     final int My_PERMISSION_REQUEST_CODE = 7171;
 
+    //Location access and Permission
     @Override
     protected void onResume() {
         super.onResume();
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
     //Press Ctrl+O
 
+    //callback for facebook
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //access location and view in text format
 
         textView = (TextView) findViewById(R.id.txtAddress);
 
@@ -117,11 +120,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         callbackManager = CallbackManager.Factory.create();
 
-        txtBirthday = (TextView) findViewById(R.id.txtBirthday);
-        txtEmail = (TextView) findViewById(R.id.txtEmail);
-        txtFriends = (TextView) findViewById(R.id.txtFriends);
+        //no of feilds which show after data retrival from facebook
+        txtBirthday = (TextView) findViewById(R.id.txtBirthday); //user's birthday
+        txtEmail = (TextView) findViewById(R.id.txtEmail);       //user's email
+        txtFriends = (TextView) findViewById(R.id.txtFriends);   //user's no of friends
 
-        imgAvatar = (ImageView) findViewById(R.id.avatar);
+        imgAvatar = (ImageView) findViewById(R.id.avatar);      // user's profile image.
 
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_birthday", "user_friends"));
@@ -173,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         printKeyHash();
     }
-
+//location services
     private void getLocation() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         provider = locationManager.getBestProvider(new Criteria(), false);
@@ -188,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             Log.e("Error","location is null");
     }
 
+    //JSON conversion of access token from facebook
     private void getData(JSONObject object) {
 
         try{
